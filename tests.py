@@ -12,6 +12,16 @@ class TestCase(unittest.TestCase):
         self.assertEqual(result.data, b'test')
         self.assertEqual(result.status_code, 200)
 
+    def test_fetchall(self):
+        result = self.app.get('/fetch')
+        self.assertEqual(result.data, b'')
+        self.assertEqual(result.status_code, 200)
+        self.app.post('/save', data={'content': 'test'})
+        result = self.app.get('/fetch')
+        self.assertEqual(result.data, b'test')
+        self.assertEqual(result.status_code, 200)
+
+
 
     def tearDown(self):
         pass
