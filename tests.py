@@ -7,9 +7,11 @@ class TestCase(unittest.TestCase):
     def setUp(self):
         self.app = app.test_client()
 
-    def test_prime(self):
-        result = self.app.get('/1')
-        self.assertEqual(result.data, b"Yes!!")
+    def test_save(self):
+        result = self.app.post('/save', data={'content':'test'})
+        self.assertEqual(result.data, b'test')
+        self.assertEqual(result.status_code, 200)
+
 
     def tearDown(self):
         pass
