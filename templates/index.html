@@ -7,10 +7,16 @@
 <body>
     <h1>Calicobin</h1>
     <form action="save" method="post">
-        <input type="text" placeholder="Título" />
+        <input type="text" name="title" placeholder="Título" />
         <textarea name="content" placeholder="Insira seu texto aqui">
         </textarea>
         <input type="submit" />
     </form>
+    <form action="clear" method="get">
+        <input type="submit" value="Clear" />
+    </form>
+{% for title, content in data.items() %}
+    <a href="/fetch/{{ title }}">{{ title }}</a><br>
+{%  endfor  %}
 </body>
 </html>

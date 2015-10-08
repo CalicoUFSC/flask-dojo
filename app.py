@@ -1,8 +1,9 @@
 import flask
 from flask import Flask
+from collections import OrderedDict
 
 app = Flask(__name__)
-data = {}
+data = OrderedDict()
 
 @app.route('/save', methods=['post',])
 def save():
@@ -13,7 +14,7 @@ def save():
 
 @app.route('/')
 def index():
-    return  flask.render_template('index.html')
+    return  flask.render_template('index.html', data=data)
 
 @app.route('/fetchall')
 def fetch():
@@ -29,7 +30,7 @@ def fetch_single(title):
 @app.route('/clear')
 def clear():
     global data
-    data = {}
+    data = OrderedDict()
     return "", 200
 
 if __name__ == '__main__':
